@@ -19,8 +19,11 @@ board.addEventListener("click", ({ target }) => {
   checkWin();
 });
 
-function displayTurn(turn) {
-  // 1. zmień text elementu h1 z klasą "turn" zależnie od tego, czyja jest aktualnie tura
+function displayTurn(turn) 
+{
+  var result = document.getElementById("turn");
+  result.innerHTML += "turn " + turn;
+
 }
 
 function checkWin() {
