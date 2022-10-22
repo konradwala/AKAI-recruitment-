@@ -8,11 +8,17 @@
 const pokemonsContainer = document.querySelector(".pokemons");
 
 function renderPokemons(pokemons) {
-  // uzupełnij tutaj
+  for(var i = 0; i < 151; i++)
+  {
+    var newPokemon = document.createElement("div");
+    newPokemon.innerHTML = pokemons[i].name;
+    
+    pokemonsContainer.append(newPokemon);
+  }
 }
 
 // następnie wykonaj uzupełnioną metodę z tablicą pokemons, aby sprawdzić czy wszystko działa
-// renderPokemons(pokemons);
+renderPokemons(pokemons);
 
 /*
   2. Przeglądanie całej listy pokemonów może okazać się trochę uciążliwe. Fajnie byłoby skorzystać z filtrów, które już znajdują sie w pliku html. 
