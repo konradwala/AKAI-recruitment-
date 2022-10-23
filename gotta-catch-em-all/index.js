@@ -23,7 +23,6 @@ function renderPokemons(pokemons) {
   }
 }
 
-
 function filterPokemons(pokemons) {
   var filters = Array.from(document.querySelectorAll("input")); 
   
