@@ -5,7 +5,11 @@
 }
 
 h1 {
-  margin-bottom: 16px;
+  text-align: center;
+  font-style: italic ;
+  font-size: 60px;
+  margin-bottom: 30px;
+  margin-top: 30px;
 }
 
 main {
@@ -30,3 +34,11 @@ input {
 button {
   padding: 4px;
 }
+
+div {
+  text-align: center;
+}
+
+/* img {
+  align-items: center;
+} */

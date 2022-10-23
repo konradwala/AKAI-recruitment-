@@ -1,83 +1,71 @@
-/*
-  1. W pliku data.js pod zmienna "pokemons" znajduje się tablica zawierająca dane wielu pokemonów, masz do niej dostęp również w tym pliku. 
-  Chciałbym, abyś użył jej do wyświetlenia wszystkich pokemonów w naszym Pokedexie. 
-  W tym celu dla każdego z nich możesz stworzyć nowy element drzeewa DOM i umieścić w nim informacje o Pokemonie (możesz zawrzeć tam jego nazwę, zdjęcie, a na kontener w którym się znajduje nadać specjalną klasę zależnie od typu)
-*/
-
-// tutaj złapiemy sekcję, do której będziemy dodawać pokemony
 var pokemonsContainer = document.querySelector(".pokemons");
 
 function renderPokemons(pokemons) {
-  pokemonsContainer.remove();
+  
+  var div = pokemonsContainer.querySelectorAll("div");
+  for (const el of div)
+  {
+    el.remove();
+  }
+  
   for(var i = 0; i < pokemons.length; i++)
   {
     var newPokemon = document.createElement("div");
-    newPokemon.setAttribute("class",pokemons[i].types);
-    newPokemon.setAttribute("id",pokemons[i].id)
+    var imagePokemon = document.createElement("img");
+
+    newPokemon.setAttribute("id",pokemons[i].id);
     newPokemon.innerHTML = pokemons[i].name;
+    newPokemon.append(imagePokemon);
+    imagePokemon.setAttribute("src", pokemons[i].image);
+
     pokemonsContainer.append(newPokemon);
+    
   }
 }
-
-// następnie wykonaj uzupełnioną metodę z tablicą pokemons, aby sprawdzić czy wszystko działa
-renderPokemons(pokemons);
-
-/*
-  2. Przeglądanie całej listy pokemonów może okazać się trochę uciążliwe. Fajnie byłoby skorzystać z filtrów, które już znajdują sie w pliku html. 
-  Napisz ciało funkcji które pozwoli nam na:
-  - filtrowanie po typie
-  - filtrowanie po nazwie (wpisany fragment zawiera się w nazwie pokemona)
-*/
-
 
 
 function filterPokemons(pokemons) {
-  var filters = Array.from(document.querySelectorAll("input"));
-  //console.log(filters);
+  var filters = Array.from(document.querySelectorAll("input")); 
+  
+  var returningArray = new Array;
 
-  var returnArray = [];
-
-  for(var x = 0; x < pokemons.length; x++)
+  var counter = 0;
+  
+  while(counter<pokemons.length)
   {
     for(var i = 0 ; i <16; i++)
     {
-      if(filters[i].checked==true)
+     if(filters[i].checked==true)
       {
-        if(pokemons[x].types==filters[i].id)
+        if(pokemons[counter].types[0]==filters[i].id||pokemons[counter].types[1]==filters[i].id)
         {
-          returnArray.push(pokemons[x]);
-          break;
+          if(filters[17].value=="")
+          {
+            returningArray.push(pokemons[counter]);
+            break;
+          }else{
+            if(pokemons[counter].name.includes(filters[17].value))
+            {
+              returningArray.push(pokemons[counter]);
+              break;
+            }
+          }
         }
       }
-      //console.log(filters[i].checked + filters[i].id);
     }
+    
+    counter++;
   }
-  console.log(returnArray);
-  return returnArray;
-
-
-
-
-
-  // uzupełnij tutaj
-  // zwróć odfiltrowaną tablicę pokemonów
+  return returningArray;
 }
-
-
-
 
 
 const form = document.querySelector("form");
 
 function submitForm(event) {
   event.preventDefault();
-  // następnie wykonaj uzupełnioną metodę z tablicą pokemons, aby sprawdzić czy wszystko działa
   renderPokemons(filterPokemons(pokemons));
 }
 
 form.addEventListener("submit", submitForm);
 
-/*
-  3. Pokedex powinien wyglądać trochę lepiej, niż ten tutaj. W folderze znajdziesz plik style.css, w którym możesz ulepszyć wygląd naszego pokedexa
-  Liczymy na Twoją kreatywność 😉
-*/
