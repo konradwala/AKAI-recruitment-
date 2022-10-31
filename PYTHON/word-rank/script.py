@@ -1,4 +1,4 @@
-# coding=utf-8
+#coding=utf-8
 
 # input: array with multiple strings
 # expected output: rank of the 3 most often repeated words in given set of strings and number of times they occured, case insensitive
@@ -23,16 +23,27 @@ sentences = [
 ]
 words = []
 wordsVol2 = []
+theMostPopularWords = []
 
 for x in sentences:
     words = words + x.split( )
 
-for i in words:
-    y = i.upper()
-    wordsVol2.append(y)
+for x in words:
+    wordsVol2.append(x.lower().replace("?", "").replace(",", ""))
     
+wordsVol2.sort()
 
-print(wordsVol2)
+lastWord = ""
+for x in wordsVol2:
+    if x!=lastWord:
+        theMostPopularWords.append([wordsVol2.count(x), x])
+    lastWord = x
+
+theMostPopularWords.sort(reverse=True)
+theMostPopularWords = theMostPopularWords[0:3]
+
+print(theMostPopularWords)
+
 
 # Example result:
 # 1. "mam" - 12
