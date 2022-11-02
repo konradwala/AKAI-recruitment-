@@ -8,4 +8,6 @@ class Exporter:
 
     def save_tasks(self, tasks):
         # TODO zapisz taski do pliku tutaj
-        pass
+        with open(r'C:\Users\Dell\Desktop\AKAI recruitment\PYTHON\tasker\src\json\taski.json', 'w') as f:
+            f.write(json.dumps(tasks))
+

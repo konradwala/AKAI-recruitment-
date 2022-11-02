@@ -1,6 +1,6 @@
 # coding=utf-8
 from src.App import App
-
+import json
 
 print("Rozpoczynanie pracy aplikacji... \n")
 application = App()
